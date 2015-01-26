@@ -8,4 +8,10 @@
 Vagrant.configure(2) do |config|
   config.vm.box = "opscode-ubuntu-14.04"
   config.vm.network "private_network", ip: "192.168.111.222"
+
+  config.vm.provision :ansible do |ansible|
+    ansible.playbook = "vagrant.yml"
+    ansible.inventory_path = "hosts"
+    ansible.limit = "all"
+  end
 end
